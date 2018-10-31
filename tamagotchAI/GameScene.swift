@@ -8,15 +8,20 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
-  let player = SKSpriteNode(imageNamed: "player")
+class GameScene: Environment {
+  let player = Player(imageNamed: "player")
   let movingSpeed: CGFloat = 3.0
+  var ql: QLearning!
   
   var movingDir = MovingDirection(.none)
   
   override func didMove(to view: SKView) {
     backgroundColor = SKColor.white
-    player.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
+    self.initStates(tileSize: player.size.width)
+    drawMatrix(size: tileSize)
+    player.initState(statesX: tilesX, statesY: tilesY)
+    ql = QLearning(dimX: tilesX, dimY: tilesY)
+    
     addChild(player)
     spawnGoodie()
     spawnGoodie()
@@ -26,14 +31,6 @@ class GameScene: SKScene {
   override func update(_ currentTime: TimeInterval) {
     super.update(currentTime)
     
-    // Move Player
-    switch movingDir.direction {
-      case .left: player.position.x -= movingSpeed
-      case .right: player.position.x += movingSpeed
-      case .up: player.position.y += movingSpeed
-      case .down: player.position.y -= movingSpeed
-      case .none: break
-    }
     // Check if player hit the wall
     player.checkBounds(forSize: size)
   }
@@ -65,14 +62,15 @@ class GameScene: SKScene {
     for touch in touches {
       let loc = touch.location(in: view)
       if loc.x > 0.8 * size.width {
-        movingDir.direction = .right
+        player.takeStep(.right)
       } else if loc.x < 0.2 * size.width  {
-        movingDir.direction = .left
+        player.takeStep(.left)
       } else if loc.y <= 0.5 * size.height {
-        movingDir.direction = .up
+        player.takeStep(.up)
       } else if loc.y > 0.5 * size.height {
-        movingDir.direction = .down
+        player.takeStep(.down)
       }
+      print("Q-Value: \(ql.Q[player.state.x][player.state.y])")
     }
   }
   

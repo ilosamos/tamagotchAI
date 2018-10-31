@@ -21,9 +21,15 @@
 		4CAFE1C72187C6910018C47F /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1C62187C6910018C47F /* Structs.swift */; };
 		4CAFE1C82187C6910018C47F /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1C62187C6910018C47F /* Structs.swift */; };
 		4CAFE1C92187C6910018C47F /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1C62187C6910018C47F /* Structs.swift */; };
-		4CAFE1CB2187D02A0018C47F /* SKSpriteKitNode+Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1CA2187D02A0018C47F /* SKSpriteKitNode+Bounds.swift */; };
-		4CAFE1CC2187D02A0018C47F /* SKSpriteKitNode+Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1CA2187D02A0018C47F /* SKSpriteKitNode+Bounds.swift */; };
-		4CAFE1CD2187D02A0018C47F /* SKSpriteKitNode+Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1CA2187D02A0018C47F /* SKSpriteKitNode+Bounds.swift */; };
+		4CAFE1CB2187D02A0018C47F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1CA2187D02A0018C47F /* Player.swift */; };
+		4CAFE1CC2187D02A0018C47F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1CA2187D02A0018C47F /* Player.swift */; };
+		4CAFE1CD2187D02A0018C47F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1CA2187D02A0018C47F /* Player.swift */; };
+		4CAFE1CF218871030018C47F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1CE218871030018C47F /* Environment.swift */; };
+		4CAFE1D0218871030018C47F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1CE218871030018C47F /* Environment.swift */; };
+		4CAFE1D1218871030018C47F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1CE218871030018C47F /* Environment.swift */; };
+		4CAFE1D32189F70B0018C47F /* QLearning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1D22189F70B0018C47F /* QLearning.swift */; };
+		4CAFE1D42189F70B0018C47F /* QLearning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1D22189F70B0018C47F /* QLearning.swift */; };
+		4CAFE1D52189F70B0018C47F /* QLearning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFE1D22189F70B0018C47F /* QLearning.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +66,9 @@
 		4CAFE1B62187BB400018C47F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CAFE1C22187BB650018C47F /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		4CAFE1C62187C6910018C47F /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
-		4CAFE1CA2187D02A0018C47F /* SKSpriteKitNode+Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKSpriteKitNode+Bounds.swift"; sourceTree = "<group>"; };
+		4CAFE1CA2187D02A0018C47F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		4CAFE1CE218871030018C47F /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		4CAFE1D22189F70B0018C47F /* QLearning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLearning.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +122,9 @@
 				4CAFE1912187BB3E0018C47F /* AppDelegate.swift */,
 				4CAFE1932187BB3E0018C47F /* ViewController.swift */,
 				4CAFE1C22187BB650018C47F /* GameScene.swift */,
-				4CAFE1CA2187D02A0018C47F /* SKSpriteKitNode+Bounds.swift */,
+				4CAFE1CE218871030018C47F /* Environment.swift */,
+				4CAFE1D22189F70B0018C47F /* QLearning.swift */,
+				4CAFE1CA2187D02A0018C47F /* Player.swift */,
 				4CAFE1C62187C6910018C47F /* Structs.swift */,
 				4CAFE1952187BB3E0018C47F /* Main.storyboard */,
 				4CAFE19B2187BB400018C47F /* Assets.xcassets */,
@@ -277,8 +287,10 @@
 				4CAFE1942187BB3E0018C47F /* ViewController.swift in Sources */,
 				4CAFE1922187BB3E0018C47F /* AppDelegate.swift in Sources */,
 				4CAFE1C72187C6910018C47F /* Structs.swift in Sources */,
+				4CAFE1D32189F70B0018C47F /* QLearning.swift in Sources */,
 				4CAFE1C32187BB650018C47F /* GameScene.swift in Sources */,
-				4CAFE1CB2187D02A0018C47F /* SKSpriteKitNode+Bounds.swift in Sources */,
+				4CAFE1CB2187D02A0018C47F /* Player.swift in Sources */,
+				4CAFE1CF218871030018C47F /* Environment.swift in Sources */,
 				4CAFE19A2187BB3E0018C47F /* tamagotchAI.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,10 +299,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CAFE1CC2187D02A0018C47F /* SKSpriteKitNode+Bounds.swift in Sources */,
+				4CAFE1CC2187D02A0018C47F /* Player.swift in Sources */,
+				4CAFE1D0218871030018C47F /* Environment.swift in Sources */,
 				4CAFE1C82187C6910018C47F /* Structs.swift in Sources */,
 				4CAFE1C42187BB650018C47F /* GameScene.swift in Sources */,
 				4CAFE1AA2187BB400018C47F /* tamagotchAITests.swift in Sources */,
+				4CAFE1D42189F70B0018C47F /* QLearning.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,10 +312,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CAFE1CD2187D02A0018C47F /* SKSpriteKitNode+Bounds.swift in Sources */,
+				4CAFE1CD2187D02A0018C47F /* Player.swift in Sources */,
+				4CAFE1D1218871030018C47F /* Environment.swift in Sources */,
 				4CAFE1C92187C6910018C47F /* Structs.swift in Sources */,
 				4CAFE1C52187BB650018C47F /* GameScene.swift in Sources */,
 				4CAFE1B52187BB400018C47F /* tamagotchAIUITests.swift in Sources */,
+				4CAFE1D52189F70B0018C47F /* QLearning.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
