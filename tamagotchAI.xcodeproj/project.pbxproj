@@ -119,13 +119,13 @@
 		4CAFE1902187BB3E0018C47F /* tamagotchAI */ = {
 			isa = PBXGroup;
 			children = (
-				4CAFE1912187BB3E0018C47F /* AppDelegate.swift */,
-				4CAFE1932187BB3E0018C47F /* ViewController.swift */,
 				4CAFE1C22187BB650018C47F /* GameScene.swift */,
-				4CAFE1CE218871030018C47F /* Environment.swift */,
 				4CAFE1D22189F70B0018C47F /* QLearning.swift */,
+				4CAFE1CE218871030018C47F /* Environment.swift */,
 				4CAFE1CA2187D02A0018C47F /* Player.swift */,
 				4CAFE1C62187C6910018C47F /* Structs.swift */,
+				4CAFE1912187BB3E0018C47F /* AppDelegate.swift */,
+				4CAFE1932187BB3E0018C47F /* ViewController.swift */,
 				4CAFE1952187BB3E0018C47F /* Main.storyboard */,
 				4CAFE19B2187BB400018C47F /* Assets.xcassets */,
 				4CAFE19D2187BB400018C47F /* LaunchScreen.storyboard */,

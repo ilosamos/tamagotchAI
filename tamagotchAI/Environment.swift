@@ -20,6 +20,20 @@ class Environment: SKScene {
     tilesY = Int(size.height / tileSize)
   }
   
+  // Fill rectangle to see which is the target or winning field
+  func drawTargetField(_ state: State) {
+    let rect = SKShapeNode(rect: CGRect(x: CGFloat(state.x) * tileSize, y: CGFloat(state.y) * tileSize, width: tileSize, height: tileSize))
+    rect.fillColor = UIColor.green
+    self.addChild(rect)
+  }
+  
+  // Fill rectangle to see which is the initial field
+  func drawInitField(_ state: State) {
+    let rect = SKShapeNode(rect: CGRect(x: CGFloat(state.x) * tileSize, y: CGFloat(state.y) * tileSize, width: tileSize, height: tileSize))
+    rect.fillColor = UIColor.lightGray
+    self.addChild(rect)
+  }
+  
   // Draw matrix with given tile size
   func drawMatrix(size: CGFloat) {
     var i = 1

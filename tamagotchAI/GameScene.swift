@@ -9,40 +9,87 @@
 import SpriteKit
 
 class GameScene: Environment {
-  let player = Player(imageNamed: "player")
-  let movingSpeed: CGFloat = 3.0
-  var ql: QLearning!
+  let player = Player(imageNamed: "player") // The agent
   
-  var movingDir = MovingDirection(.none)
+  // Be careful that you dont get out of bounds with x and y values, depends on your iOS device
+  let initState = State(x: 0, y: 0) // The initial State
+  let finalState = State(x: 12, y: 6) // The final or winning state
+  
+  var ql: QLearning!
+  let numberOfActions = 5 // Number of possible actions (left, right, up, down, none), dont change this
+  
+  var countWins: Int = 0 // Counting episodes
+  var countRewards: CGFloat = 0 // Counting sum of rewards
+  
+  var stepSpeed: TimeInterval = 0.01 // Speed of agent running through environment
   
   override func didMove(to view: SKView) {
     backgroundColor = SKColor.white
-    self.initStates(tileSize: player.size.width)
-    drawMatrix(size: tileSize)
-    player.initState(statesX: tilesX, statesY: tilesY)
-    ql = QLearning(dimX: tilesX, dimY: tilesY)
     
+    // Do some environment initialization and graphical stuff (Environment.swift)
+    initStates(tileSize: player.size.width)
+    drawMatrix(size: tileSize)
+    drawTargetField(finalState)
+    drawInitField(initState)
+    
+    // Set Player to starting point
+    player.initState(initState, statesX: tilesX, statesY: tilesY)
     addChild(player)
-    spawnGoodie()
-    spawnGoodie()
-    spawnGoodie()
+    
+    ql = QLearning(initState: initState, dimX: tilesX, dimY: tilesY, numberOfActions: numberOfActions)
+    
+    // Init constants
+    /*** THIS IS WHERE YOU CAN TRY DIFFERENT VALUES ***/
+    ql.epsilon = 0.2 // Exploring rate
+    ql.alpha = 0.5 // Learning rate
+    ql.gamma = 0.9 // Discount factor
+    
+    ql.R[finalState.x][finalState.y] = 100 // Reward for final state
+    ql.punishment = -1 // Punishment for any other state than final state
+    // You could also add some negativ rewards to give the player some "obstacles"
+    /*ql.R[10][6] = -50
+    ql.R[10][5] = -50
+    ql.R[10][4] = -50
+    ql.R[10][3] = -50
+    ql.R[10][2] = -50
+    ql.R[10][1] = -50*/
+    /*************************************************/
+    
+    // Start learning
+    let action = SKAction.sequence([SKAction.run(nextStep), SKAction.wait(forDuration: stepSpeed)])
+    run(SKAction.repeatForever(action))
+  }
+  
+  // Take action and update q value after action
+  func nextStep() {
+    //print("DO STEP")
+    //print("Take Action: \(action)")
+    //print("Q-Values: \(ql.Q[player.state.x][player.state.y])")
+    //print("Rewards: \(ql.R[player.state.x][player.state.y])")
+    //print("-------------------------------------")
+    
+    player.takeStep(ql.takeStep(state: State(x: player.state.x, y: player.state.y)))
+    countRewards += ql.updateQValue(forState: player.state)
+    
+    // If final state count up and print infos
+    if player.isInState(finalState) {
+      countWins += 1
+      player.initState(initState, statesX: tilesX, statesY: tilesY)
+      print("ROUND ENDED, rewards: \(countRewards), now running round \(countWins)")
+      if(countWins % 10 == 0) {
+        ql.printQ() // To show the q values in the output
+      }
+    }
   }
   
   override func update(_ currentTime: TimeInterval) {
     super.update(currentTime)
     
-    // Check if player hit the wall
+    // Check if player hit the wall, not necessary here
     player.checkBounds(forSize: size)
   }
-
-  func random() -> CGFloat {
-    return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
-  }
   
-  func random(min: CGFloat, max: CGFloat) -> CGFloat {
-    return random() * (max - min) + min
-  }
-  
+  /* Following code is not needed for q learning
   func spawnGoodie() {
     // Create sprite
     let goodie = SKSpriteNode(imageNamed: "goodie")
@@ -70,18 +117,6 @@ class GameScene: Environment {
       } else if loc.y > 0.5 * size.height {
         player.takeStep(.down)
       }
-      print("Q-Value: \(ql.Q[player.state.x][player.state.y])")
     }
-  }
-  
-  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-  }
-  
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    movingDir.direction = .none
-  }
-  
-  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-    movingDir.direction = .none
-  }
+  } */
 }

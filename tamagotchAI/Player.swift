@@ -13,7 +13,7 @@ class Player: SKSpriteNode {
   var maxState: State = State(x:0, y: 0)
   
   init(imageNamed: String) {
-    let texture = SKTexture(imageNamed: "player")
+    let texture = SKTexture(imageNamed: imageNamed)
     super.init(texture: texture, color: .black, size: texture.size())
   }
   required init(coder aDecoder: NSCoder) {
@@ -27,10 +27,10 @@ class Player: SKSpriteNode {
                         bottom: screenSize.height - self.size.height / 2)
   }
   
-  func initState(statesX: Int, statesY: Int) {
-    position.x = size.width / 2
-    position.y = size.height / 2
-    state = State(x: 0, y: 0)
+  func initState(_ initState: State, statesX: Int, statesY: Int) {
+    position.x = CGFloat(initState.x + 1) * size.width - (size.width / 2)
+    position.y = CGFloat(initState.y + 1) * size.height - (size.height / 2)
+    state = initState
     maxState = State(x: statesX - 1, y: statesY - 1)
   }
   
@@ -66,19 +66,10 @@ class Player: SKSpriteNode {
       case .none: break
     }
     updateState()
-    print("Player \(state)")
+  }
+  
+  // Check if player is currently in given state
+  func isInState(_ state: State) -> Bool {
+    return self.state.x == state.x && self.state.y == state.y
   }
 }
-
-struct PlayerBounds {
-  var left: CGFloat
-  var right: CGFloat
-  var top: CGFloat
-  var bottom: CGFloat
-}
-
-struct State {
-  var x: Int = 0
-  var y: Int = 0
-}
-
